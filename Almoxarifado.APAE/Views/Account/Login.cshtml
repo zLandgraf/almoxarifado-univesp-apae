@@ -1,0 +1,77 @@
+﻿@{
+    Layout = null;
+}
+@model LoginViewModel
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acesse sua conta</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/login.css">
+</head>
+<body>
+    <div class="login-container" id="login-page">
+        <div class="login-form card rounded shadow">
+            <div class="row justify-content-center">
+                <img src="~/img/logo-apae.jpg" alt="" style="display:block;max-width:150px;max-height:150px;width:auto;height:auto;">
+            </div>
+            <div class="login-title divider-custom text-center mt-3 mb-3">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon">
+                    <h5>Gestão de Estoque</h5>
+                </div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <div class="login-inputs">
+                <form asp-controller="Account" asp-action="Login" method="post" autocomplete="off">
+                    <input type="hidden" asp-for="ReturnUrl" />
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-row mb-4 px-3">
+                        <div class="col-12">
+                            <label class="form-label">Digite seu Usuário</label>
+                            <input asp-for="Email" class="form-control form-control-lg form-icon-trailing" autofocus />
+                            <small>
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-row mb-4 px-3">
+                        <div class="col-12">
+                            <label class="form-label">Digite sua senha</label>
+                            <div class="password-input">
+                                <input asp-for="Senha" type="password" class="form-control form-control-lg" />
+                            </div>
+                            <small>
+                                <span asp-validation-for="Senha" class="text-danger"></span>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-row mb-4 px-4">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                            <small class="form-check-label" for="flexCheckDefault">
+                                Manter-se conectado
+                            </small>
+                        </div>
+                    </div>
+                    <div class="form-row mb-4 px-3">
+                        <button id="login-submit-button" type="submit" class="form-control btn btn-primary">Entrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @section Scripts {
+        @{
+            await Html.RenderPartialAsync("_ValidationScriptsPartial");
+        }
+    }
+</body>
+</html>
