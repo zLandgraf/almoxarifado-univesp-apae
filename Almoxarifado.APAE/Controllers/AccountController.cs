@@ -1,9 +1,9 @@
-﻿using Almoxarifado.APAE.Models.Account;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using univesp.almox.apae.Models.Account;
 
-namespace Almoxarifado.APAE.Controllers
+namespace univesp.almox.apae.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -23,7 +23,7 @@ namespace Almoxarifado.APAE.Controllers
         [AllowAnonymous]
         public IActionResult Login(string? returnUrl = null)
         {
-            var model = new LoginViewModel
+            var model = new Login
             {
                 ReturnUrl = returnUrl,
             };
@@ -33,7 +33,7 @@ namespace Almoxarifado.APAE.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(Login model)
         {
             if (ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace Almoxarifado.APAE.Controllers
         [AllowAnonymous]
         public IActionResult Register(string returnUrl = null)
         {
-            var model = new RegisterViewModel
+            var model = new Register
             {
                 ReturnUrl = returnUrl,
             };
@@ -73,7 +73,7 @@ namespace Almoxarifado.APAE.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(Register model)
         {
             if (ModelState.IsValid)
             {

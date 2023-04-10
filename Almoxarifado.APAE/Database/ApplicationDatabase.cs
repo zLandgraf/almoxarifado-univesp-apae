@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace Almoxarifado.APAE.Database
+namespace univesp.almox.apae.Database
 {
     public class ApplicationDatabase : IdentityDbContext
     {

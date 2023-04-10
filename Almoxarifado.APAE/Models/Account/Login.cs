@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Almoxarifado.APAE.Models.Account
+namespace univesp.almox.apae.Models.Account
 {
-    public class LoginViewModel
+    public class Login
     {
         [Required(ErrorMessage = "Informe o e-mail.")]
         [EmailAddress]

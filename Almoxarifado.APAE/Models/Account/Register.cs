@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
-namespace Almoxarifado.APAE.Models.Account
+namespace univesp.almox.apae.Models.Account
 {
-    public class RegisterViewModel
+    public class Register
     {
         [Required]
         [EmailAddress]

@@ -1,4 +1,4 @@
-namespace Almoxarifado.APAE.Models.Error
+namespace univesp.almox.apae.Models.Error
 {
     public class Error
     {
