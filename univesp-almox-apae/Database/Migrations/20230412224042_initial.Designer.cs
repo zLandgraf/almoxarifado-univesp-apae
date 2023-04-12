@@ -9,10 +9,10 @@ using univesp.almox.apae.Database;
 
 #nullable disable
 
-namespace univesp.almox.apae.Database.Migrations
+namespace univesp.almox.apae.database.Migrations
 {
     [DbContext(typeof(ApplicationDatabase))]
-    [Migration("20230410230643_initial")]
+    [Migration("20230412224042_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,19 +27,19 @@ namespace univesp.almox.apae.Database.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
 
@@ -59,14 +59,14 @@ namespace univesp.almox.apae.Database.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -78,54 +78,54 @@ namespace univesp.almox.apae.Database.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("character varying(256)");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("boolean");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("boolean");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("character varying(256)");
 
                     b.HasKey("Id");
 
@@ -148,14 +148,14 @@ namespace univesp.almox.apae.Database.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -168,18 +168,18 @@ namespace univesp.almox.apae.Database.Migrations
                 {
                     b.Property<string>("LoginProvider")
                         .HasMaxLength(128)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("ProviderKey")
                         .HasMaxLength(128)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -191,10 +191,10 @@ namespace univesp.almox.apae.Database.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -206,39 +206,22 @@ namespace univesp.almox.apae.Database.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("LoginProvider")
                         .HasMaxLength(128)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("Name")
                         .HasMaxLength(128)
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("character varying(128)");
 
                     b.Property<string>("Value")
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("univesp.almox.apae.Database.Domain.Almoxarifado", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Almoxarifado");
                 });
 
             modelBuilder.Entity("univesp.almox.apae.Database.Domain.Entrada", b =>
@@ -249,46 +232,88 @@ namespace univesp.almox.apae.Database.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AlmoxarifadoId")
-                        .HasColumnType("integer");
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("DocumentoFornecedor")
                         .IsRequired()
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Fornecedor")
                         .IsRequired()
-                        .HasColumnType("varchar(200)");
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Entrada");
+                });
+
+            modelBuilder.Entity("univesp.almox.apae.Database.Domain.ItemEntrada", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("EntradaId")
+                        .HasColumnType("integer");
 
                     b.Property<int>("MaterialId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("NumeroDocumentoFiscal")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
+                    b.Property<int>("MedidaId")
+                        .HasColumnType("integer");
 
-                    b.Property<string>("Observacoes")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<decimal>("Quantidade")
-                        .HasColumnType("numeric(18,4)");
-
-                    b.Property<int>("UnidadeArmazenamentoId")
+                    b.Property<int>("Quantidade")
                         .HasColumnType("integer");
 
                     b.Property<decimal>("Valor")
-                        .HasColumnType("numeric(18,4)");
+                        .HasColumnType("numeric");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AlmoxarifadoId");
+                    b.HasIndex("EntradaId");
 
                     b.HasIndex("MaterialId");
 
-                    b.HasIndex("UnidadeArmazenamentoId");
+                    b.HasIndex("MedidaId");
 
-                    b.ToTable("Entrada");
+                    b.ToTable("ItemEntrada");
+                });
+
+            modelBuilder.Entity("univesp.almox.apae.Database.Domain.ItemSaida", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("MaterialId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MedidaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SaidaId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MaterialId");
+
+                    b.HasIndex("MedidaId");
+
+                    b.HasIndex("SaidaId");
+
+                    b.ToTable("ItemSaida");
                 });
 
             modelBuilder.Entity("univesp.almox.apae.Database.Domain.Material", b =>
@@ -299,29 +324,34 @@ namespace univesp.almox.apae.Database.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AlmoxarifadoId")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Nome")
                         .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<int>("Quantidade")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("UnidadeArmazenamentoId")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("ValorMedio")
-                        .HasColumnType("numeric(18,4)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AlmoxarifadoId");
-
-                    b.HasIndex("UnidadeArmazenamentoId");
-
                     b.ToTable("Material");
+                });
+
+            modelBuilder.Entity("univesp.almox.apae.Database.Domain.Medida", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Sigla")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Unidade");
                 });
 
             modelBuilder.Entity("univesp.almox.apae.Database.Domain.Saida", b =>
@@ -332,59 +362,16 @@ namespace univesp.almox.apae.Database.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AlmoxarifadoId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("MaterialId")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("Observacoes")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<decimal>("Quantidade")
-                        .HasColumnType("numeric(18,4)");
+                    b.Property<DateTime>("Data")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Requisitante")
                         .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<int>("UnidadeArmazenamentoId")
-                        .HasColumnType("integer");
-
-                    b.Property<decimal>("Valor")
-                        .HasColumnType("numeric(18,4)");
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AlmoxarifadoId");
-
-                    b.HasIndex("MaterialId");
-
-                    b.HasIndex("UnidadeArmazenamentoId");
 
                     b.ToTable("Saida");
-                });
-
-            modelBuilder.Entity("univesp.almox.apae.Database.Domain.Unidade", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.Property<string>("Sigla")
-                        .IsRequired()
-                        .HasColumnType("varchar(200)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Unidade");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -438,89 +425,63 @@ namespace univesp.almox.apae.Database.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("univesp.almox.apae.Database.Domain.ItemEntrada", b =>
+                {
+                    b.HasOne("univesp.almox.apae.Database.Domain.Entrada", "Entrada")
+                        .WithMany("ItemEntrada")
+                        .HasForeignKey("EntradaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("univesp.almox.apae.Database.Domain.Material", "Material")
+                        .WithMany()
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("univesp.almox.apae.Database.Domain.Medida", "Medida")
+                        .WithMany()
+                        .HasForeignKey("MedidaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Entrada");
+
+                    b.Navigation("Material");
+
+                    b.Navigation("Medida");
+                });
+
+            modelBuilder.Entity("univesp.almox.apae.Database.Domain.ItemSaida", b =>
+                {
+                    b.HasOne("univesp.almox.apae.Database.Domain.Material", "Material")
+                        .WithMany()
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("univesp.almox.apae.Database.Domain.Medida", "Medida")
+                        .WithMany()
+                        .HasForeignKey("MedidaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("univesp.almox.apae.Database.Domain.Saida", "Saida")
+                        .WithMany()
+                        .HasForeignKey("SaidaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Material");
+
+                    b.Navigation("Medida");
+
+                    b.Navigation("Saida");
+                });
+
             modelBuilder.Entity("univesp.almox.apae.Database.Domain.Entrada", b =>
                 {
-                    b.HasOne("univesp.almox.apae.Database.Domain.Almoxarifado", "Almoxarifado")
-                        .WithMany()
-                        .HasForeignKey("AlmoxarifadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("univesp.almox.apae.Database.Domain.Material", "Material")
-                        .WithMany("Entradas")
-                        .HasForeignKey("MaterialId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("univesp.almox.apae.Database.Domain.Unidade", "UnidadeArmazenamento")
-                        .WithMany()
-                        .HasForeignKey("UnidadeArmazenamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Almoxarifado");
-
-                    b.Navigation("Material");
-
-                    b.Navigation("UnidadeArmazenamento");
-                });
-
-            modelBuilder.Entity("univesp.almox.apae.Database.Domain.Material", b =>
-                {
-                    b.HasOne("univesp.almox.apae.Database.Domain.Almoxarifado", "Almoxarifado")
-                        .WithMany("Materiais")
-                        .HasForeignKey("AlmoxarifadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("univesp.almox.apae.Database.Domain.Unidade", "UnidadeArmazenamento")
-                        .WithMany()
-                        .HasForeignKey("UnidadeArmazenamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Almoxarifado");
-
-                    b.Navigation("UnidadeArmazenamento");
-                });
-
-            modelBuilder.Entity("univesp.almox.apae.Database.Domain.Saida", b =>
-                {
-                    b.HasOne("univesp.almox.apae.Database.Domain.Almoxarifado", "Almoxarifado")
-                        .WithMany()
-                        .HasForeignKey("AlmoxarifadoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("univesp.almox.apae.Database.Domain.Material", "Material")
-                        .WithMany("Saidas")
-                        .HasForeignKey("MaterialId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("univesp.almox.apae.Database.Domain.Unidade", "UnidadeArmazenamento")
-                        .WithMany()
-                        .HasForeignKey("UnidadeArmazenamentoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Almoxarifado");
-
-                    b.Navigation("Material");
-
-                    b.Navigation("UnidadeArmazenamento");
-                });
-
-            modelBuilder.Entity("univesp.almox.apae.Database.Domain.Almoxarifado", b =>
-                {
-                    b.Navigation("Materiais");
-                });
-
-            modelBuilder.Entity("univesp.almox.apae.Database.Domain.Material", b =>
-                {
-                    b.Navigation("Entradas");
-
-                    b.Navigation("Saidas");
+                    b.Navigation("ItemEntrada");
                 });
 #pragma warning restore 612, 618
         }

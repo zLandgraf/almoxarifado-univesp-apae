@@ -33,6 +33,7 @@ namespace univesp.almox.apae.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(Login model)
         {
             if (ModelState.IsValid)
@@ -107,7 +108,7 @@ namespace univesp.almox.apae.Controllers
             }
             else
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Estoque");
             }
         }
     }

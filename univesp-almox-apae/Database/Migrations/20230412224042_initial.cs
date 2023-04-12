@@ -4,33 +4,20 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace univesp.almox.apae.Database.Migrations
+namespace univesp.almox.apae.database.Migrations
 {
     public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Almoxarifado",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Nome = table.Column<string>(type: "varchar(200)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Almoxarifado", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "varchar(200)", nullable: false),
-                    Name = table.Column<string>(type: "varchar(200)", maxLength: 256, nullable: true),
-                    NormalizedName = table.Column<string>(type: "varchar(200)", maxLength: 256, nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "varchar(200)", nullable: true)
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -41,20 +28,20 @@ namespace univesp.almox.apae.Database.Migrations
                 name: "AspNetUsers",
                 columns: table => new
                 {
-                    Id = table.Column<string>(type: "varchar(200)", nullable: false),
-                    UserName = table.Column<string>(type: "varchar(200)", maxLength: 256, nullable: true),
-                    NormalizedUserName = table.Column<string>(type: "varchar(200)", maxLength: 256, nullable: true),
-                    Email = table.Column<string>(type: "varchar(200)", maxLength: 256, nullable: true),
-                    NormalizedEmail = table.Column<string>(type: "varchar(200)", maxLength: 256, nullable: true),
-                    EmailConfirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    PasswordHash = table.Column<string>(type: "varchar(200)", nullable: true),
-                    SecurityStamp = table.Column<string>(type: "varchar(200)", nullable: true),
-                    ConcurrencyStamp = table.Column<string>(type: "varchar(200)", nullable: true),
-                    PhoneNumber = table.Column<string>(type: "varchar(200)", nullable: true),
-                    PhoneNumberConfirmed = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    TwoFactorEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    Id = table.Column<string>(type: "text", nullable: false),
+                    UserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedUserName = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    Email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    NormalizedEmail = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: true),
+                    EmailConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    PasswordHash = table.Column<string>(type: "text", nullable: true),
+                    SecurityStamp = table.Column<string>(type: "text", nullable: true),
+                    ConcurrencyStamp = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumber = table.Column<string>(type: "text", nullable: true),
+                    PhoneNumberConfirmed = table.Column<bool>(type: "boolean", nullable: false),
+                    TwoFactorEnabled = table.Column<bool>(type: "boolean", nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(type: "timestamp with time zone", nullable: true),
-                    LockoutEnabled = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    LockoutEnabled = table.Column<bool>(type: "boolean", nullable: false),
                     AccessFailedCount = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
@@ -63,13 +50,55 @@ namespace univesp.almox.apae.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Entrada",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Data = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    DocumentoFornecedor = table.Column<string>(type: "text", nullable: false),
+                    Fornecedor = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Entrada", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Material",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nome = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Material", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Saida",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Data = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Requisitante = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Saida", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Unidade",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Nome = table.Column<string>(type: "varchar(200)", nullable: false),
-                    Sigla = table.Column<string>(type: "varchar(200)", nullable: false)
+                    Nome = table.Column<string>(type: "text", nullable: false),
+                    Sigla = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -82,9 +111,9 @@ namespace univesp.almox.apae.Database.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    RoleId = table.Column<string>(type: "varchar(200)", nullable: false),
-                    ClaimType = table.Column<string>(type: "varchar(200)", nullable: true),
-                    ClaimValue = table.Column<string>(type: "varchar(200)", nullable: true)
+                    RoleId = table.Column<string>(type: "text", nullable: false),
+                    ClaimType = table.Column<string>(type: "text", nullable: true),
+                    ClaimValue = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -103,9 +132,9 @@ namespace univesp.almox.apae.Database.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<string>(type: "varchar(200)", nullable: false),
-                    ClaimType = table.Column<string>(type: "varchar(200)", nullable: true),
-                    ClaimValue = table.Column<string>(type: "varchar(200)", nullable: true)
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    ClaimType = table.Column<string>(type: "text", nullable: true),
+                    ClaimValue = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -122,10 +151,10 @@ namespace univesp.almox.apae.Database.Migrations
                 name: "AspNetUserLogins",
                 columns: table => new
                 {
-                    LoginProvider = table.Column<string>(type: "varchar(200)", maxLength: 128, nullable: false),
-                    ProviderKey = table.Column<string>(type: "varchar(200)", maxLength: 128, nullable: false),
-                    ProviderDisplayName = table.Column<string>(type: "varchar(200)", nullable: true),
-                    UserId = table.Column<string>(type: "varchar(200)", nullable: false)
+                    LoginProvider = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
+                    ProviderKey = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
+                    ProviderDisplayName = table.Column<string>(type: "text", nullable: true),
+                    UserId = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -142,8 +171,8 @@ namespace univesp.almox.apae.Database.Migrations
                 name: "AspNetUserRoles",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "varchar(200)", nullable: false),
-                    RoleId = table.Column<string>(type: "varchar(200)", nullable: false)
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    RoleId = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -166,10 +195,10 @@ namespace univesp.almox.apae.Database.Migrations
                 name: "AspNetUserTokens",
                 columns: table => new
                 {
-                    UserId = table.Column<string>(type: "varchar(200)", nullable: false),
-                    LoginProvider = table.Column<string>(type: "varchar(200)", maxLength: 128, nullable: false),
-                    Name = table.Column<string>(type: "varchar(200)", maxLength: 128, nullable: false),
-                    Value = table.Column<string>(type: "varchar(200)", nullable: true)
+                    UserId = table.Column<string>(type: "text", nullable: false),
+                    LoginProvider = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
+                    Name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
+                    Value = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -183,105 +212,70 @@ namespace univesp.almox.apae.Database.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Material",
+                name: "ItemEntrada",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Nome = table.Column<string>(type: "varchar(200)", nullable: false),
+                    EntradaId = table.Column<int>(type: "integer", nullable: false),
+                    MaterialId = table.Column<int>(type: "integer", nullable: false),
+                    MedidaId = table.Column<int>(type: "integer", nullable: false),
                     Quantidade = table.Column<int>(type: "integer", nullable: false),
-                    ValorMedio = table.Column<decimal>(type: "numeric(18,4)", nullable: false),
-                    AlmoxarifadoId = table.Column<int>(type: "integer", nullable: false),
-                    UnidadeArmazenamentoId = table.Column<int>(type: "integer", nullable: false)
+                    Valor = table.Column<decimal>(type: "numeric", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Material", x => x.Id);
+                    table.PrimaryKey("PK_ItemEntrada", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Material_Almoxarifado_AlmoxarifadoId",
-                        column: x => x.AlmoxarifadoId,
-                        principalTable: "Almoxarifado",
+                        name: "FK_ItemEntrada_Entrada_EntradaId",
+                        column: x => x.EntradaId,
+                        principalTable: "Entrada",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Material_Unidade_UnidadeArmazenamentoId",
-                        column: x => x.UnidadeArmazenamentoId,
+                        name: "FK_ItemEntrada_Material_MaterialId",
+                        column: x => x.MaterialId,
+                        principalTable: "Material",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ItemEntrada_Unidade_MedidaId",
+                        column: x => x.MedidaId,
                         principalTable: "Unidade",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Entrada",
+                name: "ItemSaida",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AlmoxarifadoId = table.Column<int>(type: "integer", nullable: false),
+                    SaidaId = table.Column<int>(type: "integer", nullable: false),
                     MaterialId = table.Column<int>(type: "integer", nullable: false),
-                    UnidadeArmazenamentoId = table.Column<int>(type: "integer", nullable: false),
-                    Quantidade = table.Column<decimal>(type: "numeric(18,4)", nullable: false),
-                    Valor = table.Column<decimal>(type: "numeric(18,4)", nullable: false),
-                    Fornecedor = table.Column<string>(type: "varchar(200)", nullable: false),
-                    DocumentoFornecedor = table.Column<string>(type: "varchar(200)", nullable: false),
-                    NumeroDocumentoFiscal = table.Column<string>(type: "varchar(200)", nullable: false),
-                    Observacoes = table.Column<string>(type: "varchar(200)", nullable: false)
+                    MedidaId = table.Column<int>(type: "integer", nullable: false),
+                    Quantidade = table.Column<int>(type: "integer", nullable: false),
+                    Valor = table.Column<decimal>(type: "numeric", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Entrada", x => x.Id);
+                    table.PrimaryKey("PK_ItemSaida", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Entrada_Almoxarifado_AlmoxarifadoId",
-                        column: x => x.AlmoxarifadoId,
-                        principalTable: "Almoxarifado",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Entrada_Material_MaterialId",
+                        name: "FK_ItemSaida_Material_MaterialId",
                         column: x => x.MaterialId,
                         principalTable: "Material",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Entrada_Unidade_UnidadeArmazenamentoId",
-                        column: x => x.UnidadeArmazenamentoId,
-                        principalTable: "Unidade",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Saida",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AlmoxarifadoId = table.Column<int>(type: "integer", nullable: false),
-                    MaterialId = table.Column<int>(type: "integer", nullable: false),
-                    UnidadeArmazenamentoId = table.Column<int>(type: "integer", nullable: false),
-                    Quantidade = table.Column<decimal>(type: "numeric(18,4)", nullable: false),
-                    Valor = table.Column<decimal>(type: "numeric(18,4)", nullable: false),
-                    Requisitante = table.Column<string>(type: "varchar(200)", nullable: false),
-                    Observacoes = table.Column<string>(type: "varchar(200)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Saida", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Saida_Almoxarifado_AlmoxarifadoId",
-                        column: x => x.AlmoxarifadoId,
-                        principalTable: "Almoxarifado",
+                        name: "FK_ItemSaida_Saida_SaidaId",
+                        column: x => x.SaidaId,
+                        principalTable: "Saida",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Saida_Material_MaterialId",
-                        column: x => x.MaterialId,
-                        principalTable: "Material",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Saida_Unidade_UnidadeArmazenamentoId",
-                        column: x => x.UnidadeArmazenamentoId,
+                        name: "FK_ItemSaida_Unidade_MedidaId",
+                        column: x => x.MedidaId,
                         principalTable: "Unidade",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
@@ -325,44 +319,34 @@ namespace univesp.almox.apae.Database.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Entrada_AlmoxarifadoId",
-                table: "Entrada",
-                column: "AlmoxarifadoId");
+                name: "IX_ItemEntrada_EntradaId",
+                table: "ItemEntrada",
+                column: "EntradaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Entrada_MaterialId",
-                table: "Entrada",
+                name: "IX_ItemEntrada_MaterialId",
+                table: "ItemEntrada",
                 column: "MaterialId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Entrada_UnidadeArmazenamentoId",
-                table: "Entrada",
-                column: "UnidadeArmazenamentoId");
+                name: "IX_ItemEntrada_MedidaId",
+                table: "ItemEntrada",
+                column: "MedidaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Material_AlmoxarifadoId",
-                table: "Material",
-                column: "AlmoxarifadoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Material_UnidadeArmazenamentoId",
-                table: "Material",
-                column: "UnidadeArmazenamentoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Saida_AlmoxarifadoId",
-                table: "Saida",
-                column: "AlmoxarifadoId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Saida_MaterialId",
-                table: "Saida",
+                name: "IX_ItemSaida_MaterialId",
+                table: "ItemSaida",
                 column: "MaterialId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Saida_UnidadeArmazenamentoId",
-                table: "Saida",
-                column: "UnidadeArmazenamentoId");
+                name: "IX_ItemSaida_MedidaId",
+                table: "ItemSaida",
+                column: "MedidaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ItemSaida_SaidaId",
+                table: "ItemSaida",
+                column: "SaidaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -383,10 +367,10 @@ namespace univesp.almox.apae.Database.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Entrada");
+                name: "ItemEntrada");
 
             migrationBuilder.DropTable(
-                name: "Saida");
+                name: "ItemSaida");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -395,10 +379,13 @@ namespace univesp.almox.apae.Database.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
+                name: "Entrada");
+
+            migrationBuilder.DropTable(
                 name: "Material");
 
             migrationBuilder.DropTable(
-                name: "Almoxarifado");
+                name: "Saida");
 
             migrationBuilder.DropTable(
                 name: "Unidade");
