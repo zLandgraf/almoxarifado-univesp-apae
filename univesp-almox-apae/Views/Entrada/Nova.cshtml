@@ -1,5 +1,60 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Nova entrada";
 }
+
+@model NovaEntradaViewModel
+
+<h1>nova entrada</h1>
+
+<form method="post" asp-action="Nova" asp-controller="Entrada">
+    <div class="row mb-3">
+        <div class="col-4">
+            <span>Data</span>
+            <input type="date" asp-for="Data" class="form-control" />
+        </div>
+        <div class="col-4">
+            <span>Fornecedor</span>
+            <input asp-for="Fornecedor" class="form-control"  />
+        </div>
+        <div class="col-4">
+            <span>Documento Fornecedor</span>
+            <input asp-for="DocumentoFornecedor" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <button type="button" id="novo-item" class="btn btn-outline-dark">Novo item</button>
+        </div>
+    </div>
+    <div id="itens-entrada"></div>
+   <div class="row">
+       <div class="col-3">
+           <button type="submit" class="btn btn-primary">Cadastrar</button>
+       </div>
+   </div>
+</form>
+
+
+@section scripts {
+    <script asp-append-version="true">
+        let indice = 0;
+        let urlBaseNovoItem = "@Url.Action("Item", "Entrada")"
+
+        $("#novo-item").click(function() {
+            let url = urlBaseNovoItem + `?indice=${indice}`;
+
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (data) {
+                    console.log(data);
+                    $('#itens-entrada').prepend(data);
+                    indice++;
+                },
+            });
+        })
+    </script>
+}
+
+
+

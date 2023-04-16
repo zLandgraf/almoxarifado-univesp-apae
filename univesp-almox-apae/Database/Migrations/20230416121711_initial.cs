@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace univesp.almox.apae.database.Migrations
+namespace univesp.almox.apae.Database.Migrations
 {
     public partial class initial : Migration
     {
@@ -212,6 +212,34 @@ namespace univesp.almox.apae.database.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Estoque",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    MaterialId = table.Column<int>(type: "integer", nullable: false),
+                    MedidaId = table.Column<int>(type: "integer", nullable: false),
+                    Quantidade = table.Column<int>(type: "integer", nullable: false),
+                    ValorMedio = table.Column<decimal>(type: "numeric", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Estoque", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Estoque_Material_MaterialId",
+                        column: x => x.MaterialId,
+                        principalTable: "Material",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Estoque_Unidade_MedidaId",
+                        column: x => x.MedidaId,
+                        principalTable: "Unidade",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ItemEntrada",
                 columns: table => new
                 {
@@ -319,6 +347,16 @@ namespace univesp.almox.apae.database.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Estoque_MaterialId",
+                table: "Estoque",
+                column: "MaterialId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Estoque_MedidaId",
+                table: "Estoque",
+                column: "MedidaId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ItemEntrada_EntradaId",
                 table: "ItemEntrada",
                 column: "EntradaId");
@@ -365,6 +403,9 @@ namespace univesp.almox.apae.database.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Estoque");
 
             migrationBuilder.DropTable(
                 name: "ItemEntrada");

@@ -9,7 +9,7 @@
         public Material Material { get; set; }
         public int MedidaId { get; set; }
         public Medida Medida { get; set; }
-        public int Quantidade { get; set; }
+        public decimal Quantidade { get; set; }
         public decimal Valor { get; set; }
     }
 }

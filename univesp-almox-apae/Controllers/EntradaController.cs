@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using univesp.almox.apae.Database;
+using univesp.almox.apae.Models.Entrada;
 
 namespace univesp.almox.apae.Controllers
 {
@@ -20,12 +21,21 @@ namespace univesp.almox.apae.Controllers
         [HttpGet]
         public IActionResult Nova()
         {
-            return View();
+            return View(new NovaEntradaViewModel
+            {
+                Data = DateTime.Now,
+            });
+        }
+
+        [HttpGet]
+        public IActionResult Item(int indice)
+        {
+            return PartialView("Views/Entrada/Partials/_itemEntrada.cshtml", indice);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Nova(object model)
+        public IActionResult Nova(NovaEntradaViewModel model)
         {
             return View(model);
         }

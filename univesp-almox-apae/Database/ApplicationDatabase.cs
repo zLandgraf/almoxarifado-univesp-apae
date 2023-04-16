@@ -12,6 +12,7 @@ namespace univesp.almox.apae.Database
         public DbSet<ItemEntrada> ItemEntrada { get; set; }
         public DbSet<Saida> Saida { get; set; }
         public DbSet<ItemSaida> ItemSaida { get; set; }
+        public DbSet<Estoque> Estoque { get; set; }
 
         public ApplicationDatabase(DbContextOptions<ApplicationDatabase> options)
             : base(options)

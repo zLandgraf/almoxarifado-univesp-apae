@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using univesp.almox.apae.Database;
+using univesp.almox.apae.Models.Estoque;
 
 namespace univesp.almox.apae.Controllers
 {
@@ -15,9 +17,21 @@ namespace univesp.almox.apae.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var model = await _database.Estoque
+                .AsNoTracking()
+                .Select(e => new EstoqueViewModel
+                {
+                    MaterialId = e.MaterialId,
+                    Material = e.Material.Nome,
+                    Quantidade = e.Quantidade,
+                    Unidade = e.Medida.Sigla,
+                    ValorMedio = e.ValorMedio
+                })
+                .ToListAsync();
+
+            return View(model);
         }
     }
 }

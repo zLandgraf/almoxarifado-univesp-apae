@@ -9,10 +9,10 @@ using univesp.almox.apae.Database;
 
 #nullable disable
 
-namespace univesp.almox.apae.database.Migrations
+namespace univesp.almox.apae.Database.Migrations
 {
     [DbContext(typeof(ApplicationDatabase))]
-    [Migration("20230412224042_initial")]
+    [Migration("20230416121711_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -248,6 +248,35 @@ namespace univesp.almox.apae.database.Migrations
                     b.ToTable("Entrada");
                 });
 
+            modelBuilder.Entity("univesp.almox.apae.Database.Domain.Estoque", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("MaterialId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MedidaId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Quantidade")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("ValorMedio")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MaterialId");
+
+                    b.HasIndex("MedidaId");
+
+                    b.ToTable("Estoque");
+                });
+
             modelBuilder.Entity("univesp.almox.apae.Database.Domain.ItemEntrada", b =>
                 {
                     b.Property<int>("Id")
@@ -423,6 +452,25 @@ namespace univesp.almox.apae.database.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("univesp.almox.apae.Database.Domain.Estoque", b =>
+                {
+                    b.HasOne("univesp.almox.apae.Database.Domain.Material", "Material")
+                        .WithMany()
+                        .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("univesp.almox.apae.Database.Domain.Medida", "Medida")
+                        .WithMany()
+                        .HasForeignKey("MedidaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Material");
+
+                    b.Navigation("Medida");
                 });
 
             modelBuilder.Entity("univesp.almox.apae.Database.Domain.ItemEntrada", b =>
