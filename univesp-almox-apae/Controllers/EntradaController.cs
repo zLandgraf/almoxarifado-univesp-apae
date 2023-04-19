@@ -27,17 +27,33 @@ namespace univesp.almox.apae.Controllers
             });
         }
 
-        [HttpGet]
-        public IActionResult Item(int indice)
-        {
-            return PartialView("Views/Entrada/Partials/_itemEntrada.cshtml", indice);
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Nova(NovaEntradaViewModel model)
         {
             return View(model);
+        }
+
+        [HttpGet]
+        public IActionResult Item(int indice)
+        {
+            var arr = new ItemEntradaViewModel[indice + 1];
+
+            var item = new ItemEntradaViewModel
+            {
+                Material = "",
+                Medida = "",
+                Quantidade = 0,
+                Valor = 0
+            };
+
+            arr[indice] = item;
+
+            return PartialView("Views/Entrada/Partials/_itemEntrada.cshtml", new NovoItemEntradaViewModel
+            {
+                Index = indice,
+                ItensEntradaModel = arr.ToList() 
+            });
         }
     }
 }
