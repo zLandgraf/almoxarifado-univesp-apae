@@ -11,14 +11,17 @@
         <div class="col-4">
             <span>Data</span>
             <input type="date" asp-for="Data" class="form-control" />
+            <span asp-validation-for="Data" class="text-danger"></span>
         </div>
         <div class="col-4">
             <span>Fornecedor</span>
             <input asp-for="Fornecedor" class="form-control"  />
+            <span asp-validation-for="Fornecedor" class="text-danger"></span>
         </div>
         <div class="col-4">
             <span>Documento Fornecedor</span>
             <input asp-for="DocumentoFornecedor" class="form-control" />
+            <span asp-validation-for="DocumentoFornecedor" class="text-danger"></span>
         </div>
     </div>
     <div class="row">
@@ -26,6 +29,7 @@
             <button type="button" id="novo-item" class="btn btn-outline-dark">Novo item</button>
         </div>
     </div>
+    <span asp-validation-for="ItensEntradaModel" class="text-danger"></span>
     <div id="itens-entrada"></div>
    <div class="row">
        <div class="col-3">

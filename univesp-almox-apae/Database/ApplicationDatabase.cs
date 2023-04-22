@@ -7,7 +7,7 @@ namespace univesp.almox.apae.Database
     public class ApplicationDatabase : IdentityDbContext
     {
         public DbSet<Material> Material { get; set; }
-        public DbSet<Medida> Unidade { get; set; }
+        public DbSet<Medida> Medida { get; set; }
         public DbSet<Entrada> Entrada { get; set; }
         public DbSet<ItemEntrada> ItemEntrada { get; set; }
         public DbSet<Saida> Saida { get; set; }

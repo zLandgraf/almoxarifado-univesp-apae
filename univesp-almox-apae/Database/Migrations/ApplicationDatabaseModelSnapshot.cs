@@ -263,7 +263,7 @@ namespace univesp.almox.apae.Database.Migrations
                     b.Property<decimal>("Quantidade")
                         .HasColumnType("numeric");
 
-                    b.Property<decimal>("ValorMedio")
+                    b.Property<decimal>("ValorTotal")
                         .HasColumnType("numeric");
 
                     b.HasKey("Id");
@@ -372,13 +372,9 @@ namespace univesp.almox.apae.Database.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Sigla")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Unidade");
+                    b.ToTable("Medida");
                 });
 
             modelBuilder.Entity("univesp.almox.apae.Database.Domain.Saida", b =>

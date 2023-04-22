@@ -25,9 +25,9 @@ namespace univesp.almox.apae.Controllers
                 {
                     MaterialId = e.MaterialId,
                     Material = e.Material.Nome,
+                    Medida = e.Medida.Nome,
                     Quantidade = e.Quantidade,
-                    Unidade = e.Medida.Sigla,
-                    ValorMedio = e.ValorMedio
+                    ValorMedio = e.ValorTotal
                 })
                 .ToListAsync();
 
