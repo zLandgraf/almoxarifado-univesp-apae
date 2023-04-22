@@ -12,6 +12,9 @@ namespace univesp.almox.apae.Models.Saida
         public string Requisitante { get; set; }
 
         [Required(ErrorMessage = "Adicione ao menos um item.")]
+        public List<int> MateriaisId { get; set; }
+
+        [Required(ErrorMessage = "Adicione ao menos um item.")]
         public List<ItemSaidaViewModel> ItensSaidaModel { get; set; }
     }
 

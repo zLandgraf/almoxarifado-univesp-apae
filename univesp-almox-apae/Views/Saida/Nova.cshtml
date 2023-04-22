@@ -18,11 +18,12 @@
             <input asp-for="Requisitante" class="form-control" />
             <span asp-validation-for="Requisitante" class="text-danger"></span>
         </div>
-       
     </div>
-    <div class="row">
-        <div class="col-3">
-            <button type="button" id="novo-item" class="btn btn-outline-dark">Novo item</button>
+    <div class="row mb-3">
+        <div class="col-4">
+            <span>Material</span>
+            <input asp-for="MateriaisId" class="form-control" />
+            <span asp-validation-for="MateriaisId" class="text-danger"></span>
         </div>
     </div>
     <span asp-validation-for="ItensSaidaModel" class="text-danger"></span>
