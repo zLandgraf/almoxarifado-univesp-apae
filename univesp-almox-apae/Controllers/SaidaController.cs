@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using univesp.almox.apae.Models.Saida;
 
 namespace univesp.almox.apae.Controllers
 {
@@ -12,13 +13,21 @@ namespace univesp.almox.apae.Controllers
         [HttpGet]
         public IActionResult Nova()
         {
-            return View();
+            return View(new NovaSaidaViewModel
+            {
+                Data = DateTime.Now,
+            });
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Nova(object model)
+        public IActionResult Nova(NovaSaidaViewModel model)
         {
+            if(ModelState.IsValid)
+            {
+                return RedirectToAction("index", "estoque");
+            }
+
             return View(model);
         }
     }

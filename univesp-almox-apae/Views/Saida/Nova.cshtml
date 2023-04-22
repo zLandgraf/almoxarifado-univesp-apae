@@ -1,7 +1,35 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Nova entrada";
 }
 
-<h1>nova saída</h1>
+@model NovaSaidaViewModel
+
+<h1>nova entrada</h1>
+
+<form method="post" asp-action="Nova" asp-controller="Saida">
+    <div class="row mb-3">
+        <div class="col-4">
+            <span>Data</span>
+            <input type="date" asp-for="Data" class="form-control" />
+            <span asp-validation-for="Data" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <span>Requisitante</span>
+            <input asp-for="Requisitante" class="form-control" />
+            <span asp-validation-for="Requisitante" class="text-danger"></span>
+        </div>
+       
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <button type="button" id="novo-item" class="btn btn-outline-dark">Novo item</button>
+        </div>
+    </div>
+    <span asp-validation-for="ItensSaidaModel" class="text-danger"></span>
+    <div id="itens-entrada"></div>
+    <div class="row">
+        <div class="col-3">
+            <button type="submit" class="btn btn-primary">Efetivar</button>
+        </div>
+    </div>
+</form>
