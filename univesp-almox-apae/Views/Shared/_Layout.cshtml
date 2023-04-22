@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <partial name="_select2CSS" />
     @await RenderSectionAsync("css", required: false)
 </head>
 <body>
@@ -40,6 +41,7 @@
         </main>
     </div>
     <partial name="_LibJs" />
+    <partial name="_select2JS" />
     @await RenderSectionAsync("scripts", required: false)
 </body>
 </html>
