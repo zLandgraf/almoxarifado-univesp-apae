@@ -22,7 +22,11 @@
     <div class="row mb-3">
         <div class="col-4">
             <span>Material</span>
-            <input asp-for="MateriaisId" class="form-control" />
+            <select asp-for="MateriaisId"
+                    data-ajax--url="@Url.Action(controller:"Select2", action:"Materiais")"
+                    class="form-control select2-materiais"
+                    data-placeholder="Pesquise pelo nome">
+            </select>
             <span asp-validation-for="MateriaisId" class="text-danger"></span>
         </div>
     </div>
@@ -34,3 +38,11 @@
         </div>
     </div>
 </form>
+
+@section scripts {
+    <script asp-append-version="true">
+        $(document).ready(function () {
+            IniciaSelect2RemotoPadrao('.select2-materiais', 0);
+        });
+    </script>
+}
