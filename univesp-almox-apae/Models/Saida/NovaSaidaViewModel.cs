@@ -4,6 +4,9 @@ namespace univesp.almox.apae.Models.Saida
 {
     public class NovaSaidaViewModel
     {
+        [Required]
+        public int EstoqueId { get; set; }
+
         [Required(ErrorMessage = "Escolha uma data.")]
         public DateTime Data { get; set; }
         
@@ -12,10 +15,7 @@ namespace univesp.almox.apae.Models.Saida
         public string Requisitante { get; set; }
 
         [Required(ErrorMessage = "Adicione ao menos um item.")]
-        public List<int> MateriaisId { get; set; }
-
-        [Required(ErrorMessage = "Adicione ao menos um item.")]
-        public List<ItemSaidaViewModel> ItensSaidaModel { get; set; }
+        public ItemSaidaViewModel ItemSaidaViewModel { get; set; }
     }
 
     public class ItemSaidaViewModel
@@ -24,7 +24,7 @@ namespace univesp.almox.apae.Models.Saida
         public int MaterialId { get; set; }
 
         [Required(ErrorMessage = "Informe a medida.")]
-        public int UnidadeId { get; set; }
+        public int MedidaId { get; set; }
 
         [Required(ErrorMessage = "Informe o valor.")]
         [Range(minimum: 0.001, maximum: double.MaxValue)]
@@ -33,5 +33,7 @@ namespace univesp.almox.apae.Models.Saida
         [Required(ErrorMessage = "Informe o valor.")]
         [Range(minimum: 0.001, maximum: double.MaxValue)]
         public decimal Valor { get; set; }
+        public string Material { get; set; }
+        public string Medida { get; set; }
     }
 }

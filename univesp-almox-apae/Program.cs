@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using univesp.almox.apae.Database;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -67,6 +68,13 @@ static void ConfiguraApp(WebApplication app)
 
     app.UseAuthentication();
     app.UseAuthorization();
+
+    var cultureInfo = new CultureInfo("pt-BR");
+    cultureInfo.NumberFormat.NumberGroupSeparator = ",";
+    cultureInfo.NumberFormat.NumberDecimalSeparator = ".";
+
+    CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+    CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
     app.MapControllerRoute(
         name: "default",

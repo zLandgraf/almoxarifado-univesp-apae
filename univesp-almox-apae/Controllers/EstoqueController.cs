@@ -23,11 +23,11 @@ namespace univesp.almox.apae.Controllers
                 .AsNoTracking()
                 .Select(e => new EstoqueViewModel
                 {
+                    Id = e.Id,
                     MaterialId = e.MaterialId,
                     Material = e.Material.Nome,
                     Medida = e.Medida.Nome,
                     Quantidade = e.Quantidade,
-                    ValorMedio = e.ValorTotal
                 })
                 .ToListAsync();
 

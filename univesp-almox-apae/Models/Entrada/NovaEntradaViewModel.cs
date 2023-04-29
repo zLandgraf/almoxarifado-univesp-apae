@@ -32,16 +32,5 @@ namespace univesp.almox.apae.Models.Entrada
         [Required(ErrorMessage = "Informe a quantidade.")]
         [Range(minimum: 0.001, maximum: double.MaxValue)]
         public decimal Quantidade { get; set; }
-
-        [Required(ErrorMessage = "Informe o valor.")]
-        [Range(minimum: 0.001, maximum: double.MaxValue)]
-        public decimal Valor { get; set; }
-    }
-
-    public class NovoItemEntradaViewModel
-    {
-        public int Index { get; set; }
-        public NovaEntradaViewModel Model { get; set; }
-        public List<ItemEntradaViewModel> ItensEntradaModel { get; set; }
     }
 }

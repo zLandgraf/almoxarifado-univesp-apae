@@ -26,6 +26,15 @@ namespace univesp.almox.apae.Controllers
             return View(new NovaEntradaViewModel
             {
                 Data = DateTime.Now,
+                ItensEntradaModel = new List<ItemEntradaViewModel>()
+                {
+                    new ItemEntradaViewModel
+                    {
+                        Material = "",
+                        Medida = "",
+                        Quantidade = 1,
+                    }
+                }
             });
         }
 
@@ -86,7 +95,6 @@ namespace univesp.almox.apae.Controllers
                             Material = material,
                             Medida = medida,
                             Quantidade = item.Quantidade,
-                            ValorTotal = decimal.Round(item.Valor * item.Quantidade, 2),
                         };
 
                         await _database.Estoque.AddAsync(estoque);
@@ -94,8 +102,6 @@ namespace univesp.almox.apae.Controllers
                     else
                     {
                         estoque.Quantidade += item.Quantidade;
-                        estoque.ValorTotal += decimal.Round(item.Valor * item.Quantidade, 2);
-
                         _database.Estoque.Update(estoque);
                     }
 
@@ -104,7 +110,6 @@ namespace univesp.almox.apae.Controllers
                         Material = material,
                         Medida = medida,
                         Quantidade = item.Quantidade,
-                        Valor = item.Valor,
                     });
 
                     await _database.Entrada.AddAsync(entrada);
@@ -116,33 +121,6 @@ namespace univesp.almox.apae.Controllers
             }
 
             return View(model);
-        }
-
-        [HttpGet]
-        public IActionResult Item(int indice)
-        {
-            var arr = new ItemEntradaViewModel[indice + 1];
-
-            var item = new ItemEntradaViewModel
-            {
-                Material = "",
-                Medida = "",
-                Quantidade = 0,
-                Valor = 0
-            };
-
-            arr[indice] = item;
-
-            var model = new NovaEntradaViewModel
-            {
-                ItensEntradaModel = arr.ToList(),
-            };
-
-            return PartialView("Views/Entrada/Partials/_itemEntrada.cshtml", new NovoItemEntradaViewModel
-            {
-                Index = indice,
-                Model = model,
-            });
         }
     }
 }

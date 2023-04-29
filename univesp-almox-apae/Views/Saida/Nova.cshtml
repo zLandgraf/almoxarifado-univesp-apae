@@ -1,12 +1,13 @@
 ﻿@{
-    ViewData["Title"] = "Nova entrada";
+    ViewData["Title"] = "Nova saída";
 }
 
 @model NovaSaidaViewModel
 
-<h1>nova entrada</h1>
+<h1>nova saída</h1>
 
 <form method="post" asp-action="Nova" asp-controller="Saida">
+    <input type="hidden" asp-for="EstoqueId" />
     <div class="row mb-3">
         <div class="col-4">
             <span>Data</span>
@@ -19,30 +20,28 @@
             <span asp-validation-for="Requisitante" class="text-danger"></span>
         </div>
     </div>
-    <div class="row mb-3">
+    <div class="row">
         <div class="col-4">
             <span>Material</span>
-            <select asp-for="MateriaisId"
-                    data-ajax--url="@Url.Action(controller:"Select2", action:"Materiais")"
-                    class="form-control select2-materiais"
-                    data-placeholder="Pesquise pelo nome">
-            </select>
-            <span asp-validation-for="MateriaisId" class="text-danger"></span>
+            <input type="hidden"asp-for="ItemSaidaViewModel.MaterialId" class="form-control" />
+            <input asp-for="ItemSaidaViewModel.Material" class="form-control" />
+            <span asp-validation-for="Data" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <span>Medida</span>
+            <input type="hidden" asp-for="ItemSaidaViewModel.MedidaId" class="form-control" />
+            <input asp-for="ItemSaidaViewModel.Medida" class="form-control" />
+            <span asp-validation-for="Requisitante" class="text-danger"></span>
+        </div>
+        <div class="col-4">
+            <span>Quantidade</span>
+            <input asp-for="ItemSaidaViewModel.Quantidade" class="form-control" />
+            <span asp-validation-for="Requisitante" class="text-danger"></span>
         </div>
     </div>
-    <span asp-validation-for="ItensSaidaModel" class="text-danger"></span>
-    <div id="itens-entrada"></div>
     <div class="row">
         <div class="col-3">
             <button type="submit" class="btn btn-primary">Efetivar</button>
         </div>
     </div>
 </form>
-
-@section scripts {
-    <script asp-append-version="true">
-        $(document).ready(function () {
-            IniciaSelect2RemotoPadrao('.select2-materiais', 0);
-        });
-    </script>
-}

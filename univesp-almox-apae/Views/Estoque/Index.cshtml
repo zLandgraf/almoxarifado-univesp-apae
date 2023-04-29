@@ -10,7 +10,7 @@
             <td>Material</td>
             <td>Medida</td>
             <td>Quantidade</td>
-            <td>Valor</td>
+            <td>Opções</td>
         </tr>
     </thead>
     <tbody>
@@ -23,7 +23,9 @@
                     <td>@estoque.Material</td>
                     <td>@estoque.Medida</td>
                     <td>@estoque.Quantidade</td>
-                    <td>@estoque.ValorMedio</td>
+                    <td>
+                        <a asp-action="Nova" asp-controller="Saida" asp-route-estoqueId="@estoque.Id">Saída</a>
+                    </td>
                 </tr>
             }
         }

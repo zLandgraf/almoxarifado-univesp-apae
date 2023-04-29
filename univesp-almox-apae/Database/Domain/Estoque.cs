@@ -8,6 +8,5 @@
         public int MedidaId { get; set; }
         public Medida Medida { get; set; }
         public decimal Quantidade { get; set; }
-        public decimal ValorTotal { get; set; }
     }
 }
