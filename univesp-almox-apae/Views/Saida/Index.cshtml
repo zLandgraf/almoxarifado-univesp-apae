@@ -1,5 +1,54 @@
 ﻿@{
     ViewData["Title"] = "Todas as saídas";
 }
+@model IndexSaidaViewModel
 
-<h1>tela de saídas</h1>
+<form asp-action="index"
+      asp-controller="saida"
+      method="GET">
+    <div class="row justify-content-end mb-3">
+        <div class="col-4">
+            <input asp-for="Query" class="form-control" placeholder="Pesquise pelo material" />
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
+        </div>
+    </div>
+</form>
+
+<div class="p-3">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Data</th>
+                <th>Requisitante</th>
+                <th>Material</th>
+                <th>Quantidade</th>
+                <th>Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Saidas.Any())
+            {
+                @foreach (var (entrada, index) in Model.Saidas.Select((estoque, index) => (estoque, index)))
+                {
+                    <tr>
+                        <td>@(index + 1)</td>
+                        <td>@entrada.Data</td>
+                        <td>@entrada.Requisitante</td>
+                        <td>@entrada.Material</td>
+                        <td>@entrada.Quantidade</td>
+                        <td>
+                            <a class="btn btn-sm btn-outline-dark"
+                               asp-action="Nova"
+                               asp-controller="Saida">
+                                Detalhes
+                            </a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

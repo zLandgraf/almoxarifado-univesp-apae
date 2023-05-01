@@ -5,5 +5,6 @@
         public int Id { get; set; }
         public DateTime Data { get; set; }
         public string Requisitante { get; set; }
+        public List<ItemSaida> ItensSaida { get; set; }
     }
 }

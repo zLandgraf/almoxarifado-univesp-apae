@@ -15,9 +15,28 @@ namespace univesp.almox.apae.Controllers
             _database = database;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index(IndexEntradaViewModel? model)
         {
-            return View();
+            var entradas = await _database.ItemEntrada
+                .AsNoTracking()
+                .Where(e => model == null || EF.Functions.Like(e.Material.Nome, $"%{model.Query}%"))
+                .Select(e => new EntradaViewModel
+                {
+                    Data = e.Entrada.Data.ToString("dd/MM/yyyy"),
+                    Fornecedor = e.Entrada.Fornecedor,
+                    Material = e.Material.Nome,
+                    Quantidade = e.Quantidade,
+                })
+                .ToListAsync();
+
+            if (model == null)
+            {
+                model = new IndexEntradaViewModel();
+            }
+
+            model.Entradas = entradas;
+            return View(model);
         }
 
         [HttpGet]

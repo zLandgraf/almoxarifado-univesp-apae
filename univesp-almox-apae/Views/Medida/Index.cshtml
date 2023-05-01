@@ -1,14 +1,14 @@
 ﻿@{
-    ViewData["Title"] = "Todas as Entradas";
+    ViewData["Title"] = "Todas as medidas";
 }
-@model IndexEntradaViewModel
+@model IndexMedidaViewModel
 
 <form asp-action="index"
-      asp-controller="entrada"
+      asp-controller="medida"
       method="GET">
     <div class="row justify-content-end mb-3">
         <div class="col-4">
-            <input asp-for="Query" class="form-control" placeholder="Pesquise pelo material" />
+            <input asp-for="Query" class="form-control" placeholder="Pesquise pela medida" />
         </div>
         <div class="col-2">
             <button type="submit" class="btn btn-primary">Pesquisar</button>
@@ -21,22 +21,20 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Data</th>
-                <th>Material</th>
-                <th>Quantidade</th>
+                <th>Nome</th>
+                <th>Sigla</th>
                 <th>Opções</th>
             </tr>
         </thead>
         <tbody>
-            @if (Model != null && Model.Entradas.Any())
+            @if (Model != null && Model.Medidas.Any())
             {
-                @foreach (var (entrada, index) in Model.Entradas.Select((estoque, index) => (estoque, index)))
+                @foreach (var (medida, index) in Model.Medidas.Select((estoque, index) => (estoque, index)))
                 {
                     <tr>
                         <td>@(index + 1)</td>
-                        <td>@entrada.Data</td>
-                        <td>@entrada.Material</td>
-                        <td>@entrada.Quantidade</td>
+                        <td>@medida.Nome</td>
+                        <td>@medida.Sigla</td>
                         <td>
                             <a class="btn btn-sm btn-outline-dark"
                                asp-action="Nova"
