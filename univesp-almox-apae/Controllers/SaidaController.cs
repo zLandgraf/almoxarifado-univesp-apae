@@ -60,6 +60,9 @@ namespace univesp.almox.apae.Controllers
                 
                 estoque.Quantidade -= model.ItemSaidaViewModel.Quantidade;
 
+                _database.Estoque.Update(estoque);
+                await _database.SaveChangesAsync();
+
                 return RedirectToAction("index", "estoque");
             }
 

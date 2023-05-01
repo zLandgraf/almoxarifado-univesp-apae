@@ -11,34 +11,68 @@
     @await RenderSectionAsync("css", required: false)
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Almoxarifado.APAE</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+    <div class="col-lg-10 mx-auto">
+        <header>
+            <nav class="d-flex align-items-center justify-content-between mb-3 pb-2 border-bottom">
+                <a 
+                    class="navbar-brand"
+                    asp-controller="Home"
+                    asp-action="Index">
+                    <img src="~/img/apae-logo-hor.png" alt="" style="display:block;height:75px;width:auto">
+                </a>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="me-3">Olá, @User.Identity.Name</span>
+                        <svg viewBox="0 0 36 36" fill="none" role="img" xmlns="http://www.w3.org/2000/svg" width="32" height="32"><title>Elizabeth Cady</title><mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36"><rect width="36" height="36" rx="72" fill="#FFFFFF"></rect></mask><g mask="url(#mask__beam)"><rect width="36" height="36" fill="#519548"></rect><rect x="0" y="0" width="36" height="36" transform="translate(7 7) rotate(333 18 18) scale(1)" fill="#bef202" rx="6"></rect><g transform="translate(3.5 3.5) rotate(-3 18 18)"><path d="M13,19 a1,0.75 0 0,0 10,0" fill="#000000"></path><rect x="11" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect><rect x="23" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect></g></g></svg>
+                    </a>
+                    <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="row" style="min-height:65vh!important">
+            <div class="col-3 border-end">
+                <div style="display:flex;flex-direction:column;flex-grow: 1">
+                    <ul class="nav nav-pills flex-column mb-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Estoque" asp-action="Index">Estoque</a>
+                            <a asp-action="Index" asp-controller="Estoque" class="nav-link" aria-current="page">
+                                <i class="fa-regular fa-folder-open me-2"></i>
+                                Estoque
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Entrada" asp-action="Nova">Entrada</a>
+                        <li>
+                            <a asp-action="Index" asp-controller="Entrada" class="nav-link link-dark">
+                                <i class="fa-solid fa-square-plus me-2"></i>
+                                Entradas
+                            </a>
                         </li>
-                         <li class="nav-item">
-                           <a class="nav-link text-dark" asp-controller="Saida" asp-action="Nova">Saida</a>
+                        <li>
+                            <a asp-action="Index" asp-controller="Saida" class="nav-link link-dark">
+                                <i class="fa-solid fa-square-minus me-2"></i>
+                                Saídas
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link link-dark">
+                                <i class="fa-solid fa-weight-scale me-2"></i>
+                                Medidas
+                            </a>
                         </li>
                     </ul>
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+            <div class="col-9">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+        <div class="row">
+            <footer class="pt-3 my-3 text-muted border-top">
+               Desenvolvido pelos alunos da UNIVESP.
+            </footer>
+        </div>
     </div>
     <partial name="_LibJs" />
     <partial name="_select2JS" />

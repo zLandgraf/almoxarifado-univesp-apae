@@ -17,10 +17,13 @@ namespace univesp.almox.apae.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(IndexEstoqueViewModel? model)
         {
-            var model = await _database.Estoque
+            var estoques = await _database.Estoque
                 .AsNoTracking()
+                .Where(e => model != null 
+                    ? EF.Functions.Like(e.Material.Nome, $"%{model.Query}%") 
+                    : true)
                 .Select(e => new EstoqueViewModel
                 {
                     Id = e.Id,
@@ -31,6 +34,12 @@ namespace univesp.almox.apae.Controllers
                 })
                 .ToListAsync();
 
+            if(model == null)
+            {
+                model = new IndexEstoqueViewModel();
+            }
+
+            model.Estoques = estoques;
             return View(model);
         }
     }

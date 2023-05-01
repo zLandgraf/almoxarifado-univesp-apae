@@ -1,33 +1,54 @@
 ﻿@{
     ViewData["Title"] = "Estoque atual";
 }
-@model List<EstoqueViewModel>
+@model IndexEstoqueViewModel
 
-<table>
-    <thead>
-        <tr>
-            <td>#</td>
-            <td>Material</td>
-            <td>Medida</td>
-            <td>Quantidade</td>
-            <td>Opções</td>
-        </tr>
-    </thead>
-    <tbody>
-        @if(Model != null && Model.Any()) 
-        {
-            @foreach (var (estoque, index) in Model.Select((estoque, index) => (estoque, index)))
+<form asp-action="index"
+      asp-controller="estoque"
+      method="GET">
+    <div class="row justify-content-end mb-3">
+        <div class="col-4">
+            <input asp-for="Query" class="form-control" placeholder="Pesquise pelo material" />
+        </div>
+        <div class="col-2">
+            <button type="submit" class="btn btn-primary">Pesquisar</button>
+        </div>
+    </div>
+</form>
+
+<div class="p-3">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Material</th>
+                <th>Medida</th>
+                <th>Quantidade</th>
+                <th>Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if(Model != null && Model.Estoques.Any()) 
             {
-                <tr>
-                    <td>@(index+1)</td>
-                    <td>@estoque.Material</td>
-                    <td>@estoque.Medida</td>
-                    <td>@estoque.Quantidade</td>
-                    <td>
-                        <a asp-action="Nova" asp-controller="Saida" asp-route-estoqueId="@estoque.Id">Saída</a>
-                    </td>
-                </tr>
+                @foreach (var (estoque, index) in Model.Estoques.Select((estoque, index) => (estoque, index)))
+                {
+                    <tr>
+                        <td>@(index+1)</td>
+                        <td>@estoque.Material</td>
+                        <td>@estoque.Medida</td>
+                        <td>@estoque.Quantidade</td>
+                        <td>
+                            <a 
+                                class="btn btn-sm btn-outline-dark" 
+                                asp-action="Nova"
+                                asp-controller="Saida"
+                                asp-route-estoqueId="@estoque.Id">
+                                Saída
+                            </a>
+                        </td>
+                    </tr>
+                }
             }
-        }
-    </tbody>
-</table>
+        </tbody>
+    </table>
+</div>

@@ -29,10 +29,6 @@ namespace univesp.almox.apae.Models.Saida
         [Required(ErrorMessage = "Informe o valor.")]
         [Range(minimum: 0.001, maximum: double.MaxValue)]
         public decimal Quantidade { get; set; }
-
-        [Required(ErrorMessage = "Informe o valor.")]
-        [Range(minimum: 0.001, maximum: double.MaxValue)]
-        public decimal Valor { get; set; }
         public string Material { get; set; }
         public string Medida { get; set; }
     }
