@@ -12,7 +12,20 @@
 
   <ItemGroup>
     <None Include="compilerconfig.json" />
+    <None Include="wwwroot\js\Relatorios.js" />
+    <None Include="wwwroot\js\sb-admin\toggle-sidebar.js" />
+    <None Include="wwwroot\js\Select2Initializer.js" />
     <None Include="wwwroot\js\site.js" />
+    <None Include="wwwroot\js\SucessoModal.js" />
+    <None Include="wwwroot\scss\almox.scss" />
+    <None Include="wwwroot\scss\sbadmin-base\sidenav\_sidenav-dark.scss" />
+    <None Include="wwwroot\scss\sbadmin-base\sidenav\_sidenav-light.scss" />
+    <None Include="wwwroot\scss\sbadmin-base\sidenav\_sidenav.scss" />
+    <None Include="wwwroot\scss\sbadmin-base\_dashboard-default.scss" />
+    <None Include="wwwroot\scss\sbadmin-base\_dashboard-fixed.scss" />
+    <None Include="wwwroot\scss\sbadmin-base\_nav.scss" />
+    <None Include="wwwroot\scss\sbadmin-base\_sb-admin.scss" />
+    <None Include="wwwroot\scss\sbadmin-base\_topnav.scss" />
   </ItemGroup>
 
   <ItemGroup>
