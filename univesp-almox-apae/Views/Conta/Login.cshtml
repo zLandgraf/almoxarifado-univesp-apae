@@ -9,9 +9,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Acesse sua conta</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/almox.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/login.css">
 </head>
 <body>
@@ -33,7 +34,7 @@
                     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                     <div class="form-row mb-4 px-3">
                         <div class="col-12">
-                            <label class="form-label">Digite seu Usuário</label>
+                            <label class="form-label fw-semibold">Usuário: <span class="text-danger">*</span></label>
                             <input asp-for="Email" class="form-control form-control-lg form-icon-trailing" autofocus />
                             <small>
                                 <span asp-validation-for="Email" class="text-danger"></span>
@@ -42,7 +43,7 @@
                     </div>
                     <div class="form-row mb-4 px-3">
                         <div class="col-12">
-                            <label class="form-label">Digite sua senha</label>
+                            <label class="form-label fw-semibold">Senha: <span class="text-danger">*</span></label>
                             <div class="password-input">
                                 <input asp-for="Senha" type="password" class="form-control form-control-lg" />
                             </div>
@@ -66,8 +67,7 @@
             </div>
         </div>
     </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <partial name="_libJS" />
     @section Scripts {
         @{
             await Html.RenderPartialAsync("_ValidationScriptsPartial");

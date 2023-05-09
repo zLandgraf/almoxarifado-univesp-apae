@@ -18,19 +18,19 @@
             <div class="card-body px-0 pt-2 pb-3">
                 <div class="row mt-3">
                     <div class="col">
-                        <label>Data</label>
+                        <label class="fw-semibold">Data <span class="text-danger fw-light">*</span></label>
                         <input type="date" asp-for="Data" class="form-control" />
                         <span asp-validation-for="Data" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="row mt-3">
                     <div class="col-12 col-sm-6">
-                        <label>Fornecedor</label>
+                        <label class="fw-semibold">Fornecedor: <span class="text-danger fw-light">*</span></label>
                         <input asp-for="Fornecedor" class="form-control" />
                         <span asp-validation-for="Fornecedor" class="text-danger"></span>
                     </div>
                     <div class="col-12 col-sm-6">
-                        <label>Documento Fornecedor</label>
+                        <label class="fw-semibold">Documento Fornecedor: <span class="text-danger fw-light">*</span></label>
                         <input asp-for="DocumentoFornecedor" class="form-control" />
                         <span asp-validation-for="DocumentoFornecedor" class="text-danger"></span>
                     </div>
@@ -39,12 +39,12 @@
                 {
                     <div class="row mt-3">
                         <div class="col-12 col-sm-6">
-                            <label> Material </label>
+                            <label class="fw-semibold"> Material: <span class="text-danger fw-light">*</span> </label>
                             <input asp-for="@Model.ItensEntradaModel[i].Material" class="form-control" />
                             <span asp-validation-for="@Model.ItensEntradaModel[i].Material"></span>
                         </div>
                         <div class="col-6 col-sm-3 mt-3 mt-sm-0">
-                            <span> Medida </span>
+                            <label class="fw-semibold"> Medida: <span class="text-danger fw-light">*</span> </label>
                             <select asp-for="@Model.ItensEntradaModel[i].MedidaId"
                                 data-ajax--url="@Url.Action(controller:"Medida", action:"Select2")"
                                 class="form-control select2-medidas"
@@ -53,7 +53,7 @@
                             <span asp-validation-for="@Model.ItensEntradaModel[i].MedidaId"></span>
                         </div>
                         <div class="col-6 col-sm-3 mt-3 mt-sm-0">
-                            <span> Quantidade </span>
+                            <label class="fw-semibold"> Quantidade: <span class="text-danger fw-light">*</span>  </label>
                             <input asp-for="@Model.ItensEntradaModel[i].Quantidade" class="form-control" />
                             <span asp-validation-for="@Model.ItensEntradaModel[i].Quantidade"></span>
                         </div>
