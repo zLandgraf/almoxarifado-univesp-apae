@@ -21,11 +21,11 @@ $pink: #d63384;
 $red: #dc3545;
 $orange: #fd7e14;
 $yellow: #ffc107;
-$green: #198754;
+$green: #00695f;
 $teal: #20c997;
 $cyan: #0dcaf0;
 
-$primary: $blue;
+$primary: $green;
 $secondary: $gray-300;
 $success: $teal;
 $info: $teal;
@@ -200,7 +200,7 @@ $card-cap-bg: transparent;
 }
 
 .page-header-icon {
-    color: $blue-500 !important;
+    color: $green-500 !important;
     font-size: 1.25rem;
     margin-right: 1rem;
 }

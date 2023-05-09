@@ -1,9 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var urlImagemUsuario = "/img/user.png";
+}
+
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Sistema de integração da folha</title>
+    <link rel="icon" href="~/img/favicon.jpg">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&amp;display=swap" rel="stylesheet">
     <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
     <link rel="stylesheet" href="~/css/almox.min.css" asp-append-version="true" />
@@ -18,7 +23,7 @@
                 <i class="fas fa-bars text-white" style="font-size:1.25rem"></i>
             </button>
             <a class="navbar-brand ms-2 text-white">
-                Patrimônio
+                Almoxarifado
             </a>
         </div>
         <span class="me-3 text-white" style="color:#343a40;font-weight:200;font-size:0.95rem">
@@ -27,9 +32,7 @@
         <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-white" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <div class="rounded-circle img-usuario">
-                        <svg viewBox="0 0 36 36" fill="none" role="img" xmlns="http://www.w3.org/2000/svg" width="32" height="32"><title>Elizabeth Cady</title><mask id="mask__beam" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36"><rect width="36" height="36" rx="72" fill="#FFFFFF"></rect></mask><g mask="url(#mask__beam)"><rect width="36" height="36" fill="#519548"></rect><rect x="0" y="0" width="36" height="36" transform="translate(7 7) rotate(333 18 18) scale(1)" fill="#bef202" rx="6"></rect><g transform="translate(3.5 3.5) rotate(-3 18 18)"><path d="M13,19 a1,0.75 0 0,0 10,0" fill="#000000"></path><rect x="11" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect><rect x="23" y="14" width="1.5" height="2" rx="1" stroke="none" fill="#000000"></rect></g></g></svg>
-                    </div>
+                    <div class="rounded-circle img-usuario" style="background-image: url('@urlImagemUsuario')"></div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li>
