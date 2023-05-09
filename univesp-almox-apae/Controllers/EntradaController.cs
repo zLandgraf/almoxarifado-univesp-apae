@@ -50,7 +50,6 @@ namespace univesp.almox.apae.Controllers
                     new ItemEntradaViewModel
                     {
                         Material = "",
-                        Medida = "",
                         Quantidade = 1,
                     }
                 }
@@ -87,24 +86,10 @@ namespace univesp.almox.apae.Controllers
                         await _database.Material.AddAsync(material);
                     }
 
-                    var medida = await _database.Medida
-                        .Where(u => u.Nome == item.Medida.ToLower())
-                        .FirstOrDefaultAsync();
-
-                    if(medida == null)
-                    {
-                        medida = new Medida
-                        {
-                            Nome = item.Medida.ToLower(),
-                        };
-
-                        await _database.Medida.AddAsync(medida);
-                    }
-
                     var estoque = await _database.Estoque
                         .Where(e =>
                             e.MaterialId == material.Id &&
-                            e.MedidaId == medida.Id)
+                            e.MedidaId == item.MedidaId)
                         .FirstOrDefaultAsync();
 
                     if(estoque == null)
@@ -112,7 +97,7 @@ namespace univesp.almox.apae.Controllers
                         estoque = new Estoque
                         {
                             Material = material,
-                            Medida = medida,
+                            MedidaId = item.MedidaId,
                             Quantidade = item.Quantidade,
                         };
 
@@ -127,7 +112,7 @@ namespace univesp.almox.apae.Controllers
                     entrada.ItemEntrada.Add(new ItemEntrada
                     {
                         Material = material,
-                        Medida = medida,
+                        MedidaId = item.MedidaId,
                         Quantidade = item.Quantidade,
                     });
 

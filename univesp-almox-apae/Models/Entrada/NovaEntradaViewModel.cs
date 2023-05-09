@@ -26,8 +26,7 @@ namespace univesp.almox.apae.Models.Entrada
         public string Material { get; set; }
         
         [Required(ErrorMessage = "Informe a medida.")]
-        [StringLength(maximumLength: 200, MinimumLength = 3, ErrorMessage = "A medida deve conter de 3 a 200 caracteres")]
-        public string Medida { get; set; }
+        public int MedidaId { get; set; }
 
         [Required(ErrorMessage = "Informe a quantidade.")]
         [Range(minimum: 0.001, maximum: double.MaxValue)]

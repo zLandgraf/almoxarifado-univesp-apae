@@ -73,5 +73,38 @@ namespace univesp.almox.apae.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public async Task<JsonResult> Select2([FromQuery] string? search, int? pagina)
+        {
+            pagina = pagina ?? 1;
+            var registrosPorPagina = 5;
+
+            var resultados = await _database.Medida
+                .AsNoTracking()
+                .Where(m => EF.Functions.Like(m.Nome, $"%{search}%") || EF.Functions.Like(m.Sigla, $"%{search}%"))
+                .Select(x => new
+                {
+                    Id = x.Id,
+                    Text = x.Nome
+                })
+                .OrderByDescending(x => x.Id)
+                .Skip((pagina.Value - 1) * registrosPorPagina)
+                .Take(registrosPorPagina)
+                .ToListAsync();
+
+            var totalRegistros = await _database.Medida
+                .AsNoTracking()
+                .Where(m => EF.Functions.Like(m.Nome, $"%{search}%") || EF.Functions.Like(m.Sigla, $"%{search}%"))
+                .CountAsync();
+
+            var response = new 
+            {
+                results = resultados,
+                total_count = totalRegistros
+            };
+
+            return new JsonResult(response);
+        }
     }
 }
