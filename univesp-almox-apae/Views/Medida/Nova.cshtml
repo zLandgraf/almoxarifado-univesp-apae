@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Nova Medida";
+}
+
+@model NovaMedidaViewModel
+
+<div class="row justify-content-center pb-3">
+    <div class="paper bg-white col-6 page-container">
+        <div class="card-header mb-3 border-bottom">
+            <div class="col-12 d-flex align-items-center">
+                <div class="page-header">
+                    <i class="page-header-icon fa-solid fa-folder"></i>
+                    <h5 class="page-header-title">Nova medida</h5>
+                </div>
+            </div>
+        </div>
+        <form method="post" asp-action="Nova" asp-controller="Medida" style="display: flex; flex-direction:column;flex-grow: 1">
+            <div class="card-body px-0 pt-2 pb-3">
+                <div class="row mt-3">
+                    <div class="col">
+                        <label>Nome da medida:</label>
+                        <input asp-for="Nome" class="form-control" />
+                        <span asp-validation-for="Nome" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <label>Sigla</label>
+                        <input asp-for="Sigla" class="form-control" />
+                        <span asp-validation-for="Sigla" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center pt-3">
+                <a onclick="history.go(-1); return false;" class="btn btn-secondary me-2">
+                    Voltar
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    Salvar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

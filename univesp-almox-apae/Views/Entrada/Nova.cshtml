@@ -4,50 +4,62 @@
 
 @model NovaEntradaViewModel
 
-
-
-
-<form method="post" asp-action="Nova" asp-controller="Entrada">
-    <div class="row mb-3">
-        <div class="col-4">
-            <span>Data</span>
-            <input type="date" asp-for="Data" class="form-control" />
-            <span asp-validation-for="Data" class="text-danger"></span>
+<div class="row justify-content-center pb-3">
+    <div class="paper bg-white col-8 page-container">
+        <div class="card-header mb-3 border-bottom">
+            <div class="col-12 d-flex align-items-center">
+                <div class="page-header">
+                    <i class="page-header-icon fa-solid fa-folder"></i>
+                    <h5 class="page-header-title">Nova saída</h5>
+                </div>
+            </div>
         </div>
-        <div class="col-4">
-            <span>Fornecedor</span>
-            <input asp-for="Fornecedor" class="form-control"  />
-            <span asp-validation-for="Fornecedor" class="text-danger"></span>
-        </div>
-        <div class="col-4">
-            <span>Documento Fornecedor</span>
-            <input asp-for="DocumentoFornecedor" class="form-control" />
-            <span asp-validation-for="DocumentoFornecedor" class="text-danger"></span>
-        </div>
+        <form method="post" asp-action="Nova" asp-controller="Entrada" style="display: flex; flex-direction:column;flex-grow: 1">
+            <div class="card-body px-0 pt-2 pb-3">
+                <div class="row mt-3">
+                    <div class="col">
+                        <label>Data</label>
+                        <input type="date" asp-for="Data" class="form-control" />
+                        <span asp-validation-for="Data" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <label>Requisitante</label>
+                        <label>Fornecedor</label>
+                        <input asp-for="Fornecedor" class="form-control" />
+                        <span asp-validation-for="Fornecedor" class="text-danger"></span>
+                    </div>
+                </div>
+                @for (int i = 0; i < Model.ItensEntradaModel.Count; i++)
+                {
+                    <div class="row mt-3">
+                        <div class="col-12 col-sm-6">
+                            <label> Material </label>
+                            <input asp-for="@Model.ItensEntradaModel[i].Material" class="form-control" />
+                            <span asp-validation-for="@Model.ItensEntradaModel[i].Material"></span>
+                        </div>
+                        <div class="col-6 col-sm-3 mt-3 mt-sm-0">
+                            <span> Medida </span>
+                            <input asp-for="@Model.ItensEntradaModel[i].Medida" class="form-control" />
+                            <span asp-validation-for="@Model.ItensEntradaModel[i].Medida"></span>
+                        </div>
+                        <div class="col-6 col-sm-3 mt-3 mt-sm-0">
+                            <span> Quantidade </span>
+                            <input asp-for="@Model.ItensEntradaModel[i].Quantidade" class="form-control" />
+                            <span asp-validation-for="@Model.ItensEntradaModel[i].Quantidade"></span>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center pt-3">
+                <a onclick="history.go(-1); return false;" class="btn btn-secondary me-2">
+                    Voltar
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    Salvar
+                </button>
+            </div>
+        </form>
     </div>
-    @for (int i = 0; i < Model.ItensEntradaModel.Count; i++)
-    {
-        <div class="row">
-            <div class="col-3">
-                <span> Material </span>
-                <input asp-for="@Model.ItensEntradaModel[i].Material" />
-                <span asp-validation-for="@Model.ItensEntradaModel[i].Material"></span>
-            </div>
-            <div class="col-3">
-                <span> Medida </span>
-                <input asp-for="@Model.ItensEntradaModel[i].Medida" />
-                <span asp-validation-for="@Model.ItensEntradaModel[i].Medida"></span>
-            </div>
-            <div class="col-3">
-                <span> Quantidade </span>
-                <input asp-for="@Model.ItensEntradaModel[i].Quantidade" />
-                <span asp-validation-for="@Model.ItensEntradaModel[i].Quantidade"></span>
-            </div>
-        </div>
-    }
-   <div class="row">
-       <div class="col-3">
-           <button type="submit" class="btn btn-primary">Cadastrar</button>
-       </div>
-   </div>
-</form>
+</div>

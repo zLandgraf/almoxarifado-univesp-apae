@@ -38,5 +38,22 @@ namespace univesp.almox.apae.Controllers
             model.Medidas = medidas;
             return View(model);
         }
+
+        [HttpGet]
+        public IActionResult Nova()
+        {
+            return View(new NovaMedidaViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult Nova(NovaMedidaViewModel model)
+        {
+            if(ModelState.IsValid)
+            {
+            }
+
+            return View();
+        }
+
     }
 }
