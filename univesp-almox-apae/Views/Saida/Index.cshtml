@@ -29,12 +29,12 @@
                     <table class="table table-hover table-responsive">
                         <thead>
                             <tr>
-                                <th>#</th>
-                                <th>Data</th>
-                                <th>Requisitante</th>
-                                <th>Material</th>
-                                <th>Quantidade</th>
-                                <th>Opções</th>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Data</th>
+                                <th class="text-center">Requisitante</th>
+                                <th class="text-center">Material</th>
+                                <th class="text-center">Quantidade</th>
+                                <th class="text-center">Opções</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,12 +43,17 @@
                                 @foreach (var (saida, index) in Model.Saidas.Select((saida, index) => (saida, index)))
                                 {
                                     <tr>
-                                        <td>@(index + 1)</td>
-                                        <td>@saida.Data</td>
-                                        <td>@saida.Requisitante</td>
-                                        <td>@saida.Material</td>
-                                        <td>@saida.Quantidade</td>
-                                        <td>
+                                        <td class="text-center">@(index + 1)</td>
+                                        <td class="text-center">@saida.Data</td>
+                                        <td class="text-center">@saida.Requisitante</td>
+                                        <td class="text-center">@saida.Material</td>
+                                        <td class="text-center">@saida.Quantidade</td>
+                                        <td class="text-center">
+                                            <a class="btn btn-sm btn-primary"
+                                               asp-action="Editar"
+                                               asp-controller="Saida">
+                                                Editar
+                                            </a>
                                             <a class="btn btn-sm btn-outline-dark"
                                                asp-action="Detalhes"
                                                asp-controller="Saida">
