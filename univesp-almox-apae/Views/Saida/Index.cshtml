@@ -3,52 +3,70 @@
 }
 @model IndexSaidaViewModel
 
-<form asp-action="index"
-      asp-controller="saida"
-      method="GET">
-    <div class="row justify-content-end mb-3">
-        <div class="col-4">
-            <input asp-for="Query" class="form-control" placeholder="Pesquise pelo material" />
+<div class="row justify-content-center pb-3">
+    <div class="paper bg-white col-10 page-container">
+        <div class="card-header mb-3 border-bottom">
+            <div class="col-12 d-flex align-items-center">
+                <div class="page-header">
+                    <i class="page-header-icon fa-solid fa-folder"></i>
+                    <h5 class="page-header-title">Todas as saídas</h5>
+                </div>
+            </div>
         </div>
-        <div class="col-2">
-            <button type="submit" class="btn btn-primary">Pesquisar</button>
+        <div class="card-body px-0 pt-2 pb-3" style="display: flex; flex-direction:column;flex-grow: 1">
+            <form asp-action="index" asp-controller="saida" method="GET">
+                <div class="row justify-content-end mb-3">
+                    <div class="col-12 col-lg-6 col-xl-5 mb-2 mb-xl-0">
+                        <input asp-for="Query" class="form-control" placeholder="Pesquise pelo material" />
+                    </div>
+                    <div class="col-12 col-lg-3 col-xl-2 d-flex align-items-end">
+                        <button type="submit" class="btn-block btn btn-primary"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            <div id="resultados" class="mt-3 mb-3">
+                <div id="page-table-scroll">
+                    <table class="table table-hover table-responsive">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Data</th>
+                                <th>Requisitante</th>
+                                <th>Material</th>
+                                <th>Quantidade</th>
+                                <th>Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Saidas.Any())
+                            {
+                                @foreach (var (saida, index) in Model.Saidas.Select((saida, index) => (saida, index)))
+                                {
+                                    <tr>
+                                        <td>@(index + 1)</td>
+                                        <td>@saida.Data</td>
+                                        <td>@saida.Requisitante</td>
+                                        <td>@saida.Material</td>
+                                        <td>@saida.Quantidade</td>
+                                        <td>
+                                            <a class="btn btn-sm btn-outline-dark"
+                                               asp-action="Detalhes"
+                                               asp-controller="Saida">
+                                                Detalhes
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer d-flex justify-content-between align-items-center pt-3">
+            <a onclick="history.go(-1); return false;" class="btn btn-secondary me-2">
+                Voltar
+            </a>
         </div>
     </div>
-</form>
-
-<div class="p-3">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Data</th>
-                <th>Requisitante</th>
-                <th>Material</th>
-                <th>Quantidade</th>
-                <th>Opções</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null && Model.Saidas.Any())
-            {
-                @foreach (var (entrada, index) in Model.Saidas.Select((estoque, index) => (estoque, index)))
-                {
-                    <tr>
-                        <td>@(index + 1)</td>
-                        <td>@entrada.Data</td>
-                        <td>@entrada.Requisitante</td>
-                        <td>@entrada.Material</td>
-                        <td>@entrada.Quantidade</td>
-                        <td>
-                            <a class="btn btn-sm btn-outline-dark"
-                               asp-action="Nova"
-                               asp-controller="Saida">
-                                Detalhes
-                            </a>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
 </div>
