@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace univesp.almox.apae.Models.Account
+namespace univesp.almox.apae.Models.Conta
 {
     public class Register
     {

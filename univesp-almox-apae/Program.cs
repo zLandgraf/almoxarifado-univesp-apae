@@ -40,7 +40,7 @@ static void RegistraServicos(WebApplicationBuilder builder)
         options.AccessDeniedPath = "/error/403";
         options.Cookie.Name = "apae-almoxarifado-ck";
         options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
-        options.LoginPath = "/account/login";
+        options.LoginPath = "/conta/login";
     });
 
     builder.Services.Configure<RouteOptions>(option =>

@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using univesp.almox.apae.Models.Account;
+using univesp.almox.apae.Models.Conta;
 
 namespace univesp.almox.apae.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class ContaController : Controller
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public AccountController(
+        public ContaController(
             SignInManager<IdentityUser> signInManager,
             UserManager<IdentityUser> userManager)
         {
