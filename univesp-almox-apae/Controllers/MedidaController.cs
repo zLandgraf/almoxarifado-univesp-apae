@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using univesp.almox.apae.Database;
 using univesp.almox.apae.Database.Domain;
 using univesp.almox.apae.Models.Medida;
-using univesp.almox.apae.Models.Saida;
 
 namespace univesp.almox.apae.Controllers
 {
@@ -46,14 +45,33 @@ namespace univesp.almox.apae.Controllers
         }
 
         [HttpPost]
-        public IActionResult Nova(NovaMedidaViewModel model)
+        public async Task<IActionResult> Nova(NovaMedidaViewModel model)
         {
             if(ModelState.IsValid)
             {
+                var nomeEmUso = await _database.Medida.AnyAsync(m => m.Nome == model.Nome);
+
+                if (nomeEmUso)
+                    return BadRequest();
+
+                var siglaEmUso = await _database.Medida.AnyAsync(m => m.Sigla == model.Sigla);
+
+                if (siglaEmUso)
+                    return BadRequest();
+
+                var medida = new Medida
+                {
+                    Nome = model.Nome,
+                    Sigla = model.Sigla
+                };
+
+                await _database.Medida.AddAsync(medida);
+                await _database.SaveChangesAsync();
+
+                return RedirectToAction("index", "medida");
             }
 
-            return View();
+            return View(model);
         }
-
     }
 }
