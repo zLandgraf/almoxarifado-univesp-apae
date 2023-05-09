@@ -3,50 +3,65 @@
 }
 @model IndexEntradaViewModel
 
-<form asp-action="index"
-      asp-controller="entrada"
-      method="GET">
-    <div class="row justify-content-end mb-3">
-        <div class="col-4">
-            <input asp-for="Query" class="form-control" placeholder="Pesquise pelo material" />
-        </div>
-        <div class="col-2">
-            <button type="submit" class="btn btn-primary">Pesquisar</button>
+<div class="container-fluid py-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4 px-3">
+                <div class="card-header border-bottom pb-3 px-3">
+                    <h4>Todas as entradas</h4>
+                </div>
+                <div class="card-body p-4">
+                    <div class="py-3">
+                        <form asp-action="index" asp-controller="entrada" method="GET">
+                            <div class="row justify-content-end mb-3">
+                                <div class="col-4">
+                                    <input asp-for="Query" class="form-control" placeholder="Pesquise pelo material" />
+                                </div>
+                                <div class="col-2">
+                                    <button type="submit" class="btn btn-primary form-control">Pesquisar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th class="text-center">#</th>
+                                <th class="text-center">Data</th>
+                                <th class="text-center">Material</th>
+                                <th class="text-center">Quantidade</th>
+                                <th class="text-center">Opções</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Entradas.Any())
+                            {
+                                @foreach (var (entrada, index) in Model.Entradas.Select((estoque, index) => (estoque, index)))
+                                {
+                                    <tr>
+                                        <td class="text-center">@(index + 1)</td>
+                                        <td class="text-center">@entrada.Data</td>
+                                        <td class="text-center">@entrada.Material</td>
+                                        <td class="text-center">@entrada.Quantidade</td>
+                                        <td class="text-center">
+                                            <a class="btn btn-sm btn-outline-dark"
+                                                asp-action="Nova"
+                                                asp-controller="Saida">
+                                                Detalhes
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <a href="#" class="btn btn-sm btn-secondary">
+                        Voltar
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
-</form>
-
-<div class="p-3">
-    <table class="table table-hover">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Data</th>
-                <th>Material</th>
-                <th>Quantidade</th>
-                <th>Opções</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (Model != null && Model.Entradas.Any())
-            {
-                @foreach (var (entrada, index) in Model.Entradas.Select((estoque, index) => (estoque, index)))
-                {
-                    <tr>
-                        <td>@(index + 1)</td>
-                        <td>@entrada.Data</td>
-                        <td>@entrada.Material</td>
-                        <td>@entrada.Quantidade</td>
-                        <td>
-                            <a class="btn btn-sm btn-outline-dark"
-                               asp-action="Nova"
-                               asp-controller="Saida">
-                                Detalhes
-                            </a>
-                        </td>
-                    </tr>
-                }
-            }
-        </tbody>
-    </table>
 </div>
