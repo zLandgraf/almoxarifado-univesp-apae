@@ -63,15 +63,21 @@
                         </div>
                         <a class="nav-link @Html.HoverController("Entrada")" asp-action="Index" asp-controller="Entrada">
                             <div class="sb-nav-link-icon">
-                                <i class="fa-solid fa-file-circle-plus"></i>
+                                <i class="fa-solid fa-circle-plus"></i>
                             </div>
                             Entradas
                         </a>
                         <a class="nav-link @Html.HoverController("Saida")" asp-action="Index" asp-controller="Saida">
                             <div class="sb-nav-link-icon">
-                                <i class="fa-solid fa-user-group"></i>
+                                <i class="fa-solid fa-circle-minus"></i>
                             </div>
                             Saídas
+                        </a>
+                        <a class="nav-link @Html.HoverController("Medida")" asp-action="Index" asp-controller="Medida">
+                            <div class="sb-nav-link-icon">
+                                <i class="fa-solid fa-weight-scale"></i>
+                            </div>
+                            Medidas
                         </a>
                         <div class="sb-sidenav-menu-heading">
                             Dados e informações
