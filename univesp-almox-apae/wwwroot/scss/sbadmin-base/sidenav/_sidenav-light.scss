@@ -1,0 +1,56 @@
+.sb-sidenav-light {
+	background-color: $white;
+
+	.sb-sidenav-menu {
+		.sb-sidenav-menu-heading {
+			color: $primary-600;
+		}
+
+		.nav-link {
+			color: $gray-800;
+
+			.sb-nav-link-icon {
+				color: $gray-800;
+				font-weight: 100 !important;
+			}
+
+			.sb-sidenav-collapse-arrow {
+				color: $gray-400;
+			}
+
+			&:hover {
+				color: $gray-900;
+				font-weight: bold;
+				border-radius: 1.5rem;
+				background-color: $primary-50;
+
+				.sb-nav-link-icon {
+					color: $gray-900;
+				}
+			}
+
+			&.active {
+				color: $gray-900;
+				font-weight: bold;
+				border-radius: 1.5rem;
+				background-color: $primary-50;
+
+				.sb-nav-link-icon {
+					color: $gray-900;
+				}
+			}
+
+			&.inactive {
+				color: $gray-500;
+
+				.sb-nav-link-icon {
+					color: $gray-500;
+				}
+			}
+		}
+	}
+
+	.sb-sidenav-footer {
+		background-color: $sidenav-light-footer-bg;
+	}
+}

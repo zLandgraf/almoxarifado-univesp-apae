@@ -1,0 +1,217 @@
+﻿@import "../lib/bootstrap/scss/_functions";
+
+
+$white: #fff !default;
+$gray-100: #f8f9fa;
+$gray-200: #e9ecef;
+$gray-300: #dee2e6;
+$gray-400: #ced4da;
+$gray-500: #adb5bd;
+$gray-600: #6c757d;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$black: #000 !default;
+$light-surface: $gray-100;
+
+$blue: #002f6c;
+$indigo: #6610f2;
+$purple: #6f42c1;
+$pink: #d63384;
+$red: #dc3545;
+$orange: #fd7e14;
+$yellow: #ffc107;
+$green: #198754;
+$teal: #20c997;
+$cyan: #0dcaf0;
+
+$primary: $blue;
+$secondary: $gray-300;
+$success: $teal;
+$info: $teal;
+$warning: $orange;
+$danger: $pink;
+$light: $gray-300;
+$dark: $gray-800;
+$body-color: $gray-900;
+
+$primary-50: tint-color($primary, 95%);
+$primary-100: tint-color($primary, 90%);
+$primary-200: tint-color($primary, 60%);
+$primary-300: tint-color($primary, 40%);
+$primary-400: tint-color($primary, 20%);
+$primary-500: $primary;
+$primary-600: shade-color($primary, 20%);
+$primary-700: shade-color($primary, 40%);
+$primary-800: shade-color($primary, 60%);
+$primary-900: shade-color($primary, 80%);
+
+$body-bg: $light-surface;
+$body-color: $gray-900 !default;
+$input-bg: $white;
+
+$font-family-sans-serif: Roboto, -apple-system, system-ui, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+@import "../lib/bootstrap/scss/_variables";
+@import "../lib/bootstrap/scss/_mixins";
+
+$card-cap-padding-y: 0;
+$card-cap-padding-x: 0;
+$card-cap-bg: transparent;
+
+@import "sbadmin-base/_sb-admin.scss";
+@import "../lib/bootstrap/scss/bootstrap.scss";
+
+.bg-gray-100 {
+    background-color: $gray-100;
+}
+
+.bg-gray-200 {
+    background-color: $gray-200;
+}
+
+.bg-gray-300 {
+    background-color: $gray-300;
+}
+
+.bg-gray-400 {
+    background-color: $gray-400;
+}
+
+.bg-gray-500 {
+    background-color: $gray-500;
+}
+
+.bg-gray-600 {
+    background-color: $gray-600;
+}
+
+.bg-gray-700 {
+    background-color: $gray-700;
+}
+
+.bg-gray-800 {
+    background-color: $gray-800;
+}
+
+.bg-gray-900 {
+    background-color: $gray-900;
+}
+
+.bg-primary-100 {
+	background-color: $primary-100;
+}
+
+.bg-primary-200 {
+	background-color: $primary-200;
+}
+
+.bg-primary-300 {
+	background-color: $primary-300;
+}
+
+.bg-primary-400 {
+	background-color: $primary-400;
+}
+
+.bg-primary-500 {
+	background-color: $primary-500;
+}
+
+.bg-primary-600 {
+	background-color: $primary-600;
+}
+
+.bg-primary-700 {
+	background-color: $primary-700;
+}
+
+.bg-primary-800 {
+	background-color: $primary-800;
+}
+
+.bg-primary-900 {
+	background-color: $primary-900;
+}
+
+.text-gray-100 {
+    color: $gray-100;
+}
+
+.text-gray-200 {
+    color: $gray-200;
+}
+
+.text-gray-300 {
+    color: $gray-300;
+}
+
+.text-gray-400 {
+    color: $gray-400;
+}
+
+.text-gray-500 {
+    color: $gray-500;
+}
+
+.text-gray-600 {
+    color: $gray-600;
+}
+
+.text-gray-700 {
+    color: $gray-700;
+}
+
+.text-gray-800 {
+    color: $gray-800;
+}
+
+.text-gray-900 {
+    color: $gray-900;
+}
+
+.paper {
+    border-radius: .35rem;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.25), 0 1px 1px rgba(0,0,0,0.25) !important;
+    transition: all 0.0s cubic-bezier(.25,.8,.25,1) !important;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 70vh;
+    padding-left: 2.5rem !important;
+    padding-bottom: 1.5rem !important;
+    padding-right: 2.5rem !important;
+    padding-top: .25rem !important;
+}
+
+.page-link {
+    cursor: pointer;
+}
+
+.page-header {
+    display: flex;
+    align-items: center;
+    border-radius: .25rem;
+    padding: .3rem 1.25rem .3rem 1.25rem;
+    margin: 1rem 0 1rem 0;
+    background-color: tint-color($primary, 95%);
+}
+
+.page-header-icon {
+    color: $blue-500 !important;
+    font-size: 1.25rem;
+    margin-right: 1rem;
+}
+
+.page-header-title {
+    font-weight: 400;
+    font-size: 1.25rem;
+    padding-top: .5rem;
+}
+
+#page-table-scroll {
+	max-height: 45vh;
+	overflow-y: auto;
+}

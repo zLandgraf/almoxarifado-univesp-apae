@@ -4,92 +4,57 @@
 
 @model NovaSaidaViewModel
 
-<div class="row">
-    <div class="col-12 col-lg-8 mx-auto my-5">
-        <div class="card multisteps-form__panel p-3 border-radius-xl bg-white" data-animation="FadeIn">
-            <h5 class="font-weight-bolder">Address</h5>
-            <div class="multisteps-form__content">
-                <div class="row mt-3">
-                    <div class="col">
-                        <label>Address 1</label>
-                        <input class="multisteps-form__input form-control" type="text" placeholder="eg. Street 111" onfocus="focused(this)" onfocusout="defocused(this)" data-dashlane-rid="4d3b110069d94195" data-kwimpalastatus="dead">
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col">
-                        <label>Address 2</label>
-                        <input class="multisteps-form__input form-control" type="text" placeholder="eg. Street 221" onfocus="focused(this)" onfocusout="defocused(this)" data-dashlane-rid="d1320d577335e4c2" data-kwimpalastatus="dead">
-                    </div>
-                </div>
-                <div class="row mt-3">
-                    <div class="col-12 col-sm-6">
-                        <label>City</label>
-                        <input class="multisteps-form__input form-control" type="text" placeholder="eg. Tokyo" onfocus="focused(this)" onfocusout="defocused(this)" data-dashlane-rid="6b3674c4f3708d03" data-kwimpalastatus="dead">
-                    </div>
-                    <div class="col-6 col-sm-3 mt-3 mt-sm-0">
-                        <label>State</label>
-                        <select class="multisteps-form__select form-control" data-dashlane-rid="5be21414aad8be08" data-kwimpalastatus="dead">
-                            <option selected="selected">...</option>
-                            <option value="1">State 1</option>
-                            <option value="2">State 2</option>
-                        </select>
-                    </div>
-                    <div class="col-6 col-sm-3 mt-3 mt-sm-0">
-                        <label>Zip</label>
-                        <input class="multisteps-form__input form-control" type="text" placeholder="7 letters" onfocus="focused(this)" onfocusout="defocused(this)" data-dashlane-rid="cfffc2d211a6f8e4" data-kwimpalastatus="dead">
-                    </div>
-                </div>
-                <div class="button-row d-flex mt-4">
-                    <button class="btn btn-secondary mb-0" type="button" title="Prev">
-                        Voltar
-                    </button>
-                    <button class="btn btn-primary ms-auto mb-0" type="button" title="Next">
-                        Salvar
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<h1>nova saída</h1>
-
 <form method="post" asp-action="Nova" asp-controller="Saida">
     <input type="hidden" asp-for="EstoqueId" />
-    <div class="row mb-3">
-        <div class="col-4">
-            <span>Data</span>
-            <input type="date" asp-for="Data" class="form-control" />
-            <span asp-validation-for="Data" class="text-danger"></span>
-        </div>
-        <div class="col-4">
-            <span>Requisitante</span>
-            <input asp-for="Requisitante" class="form-control" />
-            <span asp-validation-for="Requisitante" class="text-danger"></span>
-        </div>
-    </div>
     <div class="row">
-        <div class="col-4">
-            <span>Material</span>
-            <input type="hidden"asp-for="ItemSaidaViewModel.MaterialId" class="form-control" />
-            <input asp-for="ItemSaidaViewModel.Material" class="form-control" />
-            <span asp-validation-for="Data" class="text-danger"></span>
-        </div>
-        <div class="col-4">
-            <span>Medida</span>
-            <input type="hidden" asp-for="ItemSaidaViewModel.MedidaId" class="form-control" />
-            <input asp-for="ItemSaidaViewModel.Medida" class="form-control" />
-            <span asp-validation-for="Requisitante" class="text-danger"></span>
-        </div>
-        <div class="col-4">
-            <span>Quantidade</span>
-            <input asp-for="ItemSaidaViewModel.Quantidade" class="form-control" />
-            <span asp-validation-for="Requisitante" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-3">
-            <button type="submit" class="btn btn-primary">Efetivar</button>
+        <div class="col-12 col-lg-8 mx-auto my-5">
+            <div class="card multisteps-form__panel p-3 border-radius-xl bg-white" data-animation="FadeIn">
+                <h5 class="font-weight-bolder">Nova saída</h5>
+                <div class="multisteps-form__content">
+                
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label>Data</label>
+                            <input type="date" asp-for="Data" class="form-control" />
+                            <span asp-validation-for="Data" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col">
+                            <label>Requisitante</label>
+                            <input asp-for="Requisitante" class="form-control" />
+                            <span asp-validation-for="Requisitante" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-12 col-sm-6">
+                            <label>Material</label>
+                            <input type="hidden"asp-for="ItemSaidaViewModel.MaterialId" class="form-control" />
+                            <input asp-for="ItemSaidaViewModel.Material" class="form-control" />
+                            <span asp-validation-for="ItemSaidaViewModel.MaterialId" class="text-danger"></span>
+                        </div>
+                        <div class="col-6 col-sm-3 mt-3 mt-sm-0">
+                            <label>Medida</label>
+                            <input type="hidden" asp-for="ItemSaidaViewModel.MedidaId" class="form-control" />
+                            <input asp-for="ItemSaidaViewModel.Medida" class="form-control" />
+                            <span asp-validation-for="Requisitante" class="text-danger"></span>
+                        </div>
+                        <div class="col-6 col-sm-3 mt-3 mt-sm-0">
+                            <label>Quantidade</label>
+                            <input asp-for="ItemSaidaViewModel.Quantidade" class="form-control" />
+                            <span asp-validation-for="Requisitante" class="text-danger"></span>
+                        </div>
+                    </div>
+                    <div class="button-row d-flex mt-4">
+                        <button class="btn btn-secondary mb-0" type="button" title="Prev">
+                            Voltar
+                        </button>
+                        <button class="btn btn-primary ms-auto mb-0" type="submit" title="Next">
+                            Salvar
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </form>

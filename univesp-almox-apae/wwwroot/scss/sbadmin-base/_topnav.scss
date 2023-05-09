@@ -1,0 +1,25 @@
+.sb-topnav {
+    padding-left: 0;
+    height: $topnav-base-height;
+    z-index: $zindex-topnav;
+    display: flex;
+    align-items: center;
+
+    .navbar-brand {
+        padding-left: $navbar-padding-x;
+        padding-right: $navbar-padding-x;
+        margin: 0;
+        font-size: 1.25rem;
+    }
+
+    &.navbar-dark {
+        #sidebarToggle {
+            color: $white;
+        }
+    }
+
+    &.navbar-light {
+        background-color: $primary;
+        color: $white;
+    }
+}

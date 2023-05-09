@@ -1,6 +1,6 @@
 ﻿[
   {
-    "outputFile": "wwwroot/css/soft-ui-dashboard.css",
-    "inputFile": "wwwroot/scss/soft-ui-dashboard.scss"
+    "outputFile": "wwwroot/css/almox.css",
+    "inputFile": "wwwroot/scss/almox.scss"
   }
 ]
